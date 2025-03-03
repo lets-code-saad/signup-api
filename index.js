@@ -6,12 +6,13 @@ connectionDB()
 
 const app = express();
 
+// it requires to send data into json format
 app.use(express.json())
 
 app.post("/signup", async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
 
-    const newUser = User({ firstName, lastName, email, password })
+    const newUser = new User({ firstName, lastName, email, password })
 
     await newUser.save()
 
@@ -20,5 +21,5 @@ app.post("/signup", async (req, res) => {
 })
 
 app.listen(3000, () => {
-    console.log("Hello Sir")
+    console.log("Server Started")
 })
